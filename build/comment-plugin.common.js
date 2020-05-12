@@ -355,6 +355,7 @@ function () {
     this.y = 0;
     this.dragPosition = [0, 0];
     this.links = [];
+    this.data = {};
     this.initView();
     this.update();
   }
@@ -628,6 +629,7 @@ function () {
           y = _ref2[1];
 
       var links = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+      var data = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
       var comment = new InlineComment(text, this.editor);
 
       comment.k = function () {
@@ -637,6 +639,7 @@ function () {
       comment.x = x;
       comment.y = y;
       comment.linkTo(links);
+      comment.data = data;
       this.addComment(comment);
     }
   }, {
@@ -773,10 +776,11 @@ function install(editor, _ref) {
     var type = _ref2.type,
         text = _ref2.text,
         nodes = _ref2.nodes,
-        position = _ref2.position;
+        position = _ref2.position,
+        data = _ref2.data;
 
     if (type === 'inline') {
-      manager.addInlineComment(text, position);
+      manager.addInlineComment(text, position, null, data);
     } else if (type === 'frame') {
       var _nodesBBox = nodesBBox(editor, nodes, margin),
           left = _nodesBBox.left,

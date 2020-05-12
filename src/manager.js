@@ -11,13 +11,14 @@ export default class CommentManager {
         });
     }
 
-    addInlineComment(text, [ x, y ], links = []) {
+    addInlineComment(text, [ x, y ], links = [], data = {}) {
         let comment = new InlineComment(text, this.editor);
 
         comment.k = () => this.editor.view.area.transform.k;
         comment.x = x;
         comment.y = y;
         comment.linkTo(links);
+        comment.data = data;
 
         this.addComment(comment);
     }

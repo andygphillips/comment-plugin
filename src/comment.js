@@ -9,6 +9,7 @@ export default class Comment {
         this.y = 0;
         this.dragPosition = [0, 0];
         this.links = [];
+        this.data = {};
  
         this.initView();
         this.update();

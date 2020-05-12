@@ -39,9 +39,9 @@ function install(editor, { margin = 30, disableBuiltInEdit = false }) {
         }
     });
 
-    editor.on('addcomment', ({ type, text, nodes, position }) => {
+    editor.on('addcomment', ({ type, text, nodes, position, data }) => {
         if (type === 'inline') {
-            manager.addInlineComment(text, position);
+            manager.addInlineComment(text, position, null, data);
         } else if (type === 'frame') {
             const { left, top, width, height } = nodesBBox(editor, nodes, margin);
             const ids = nodes.map(n => n.id);
