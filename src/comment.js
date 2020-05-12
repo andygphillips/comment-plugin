@@ -73,6 +73,7 @@ export default class Comment {
         this.y = y + this.scale * dy;
         
         this.update();
+        this.editor.trigger('commenttranslate', this);
     }
 
     update() {
