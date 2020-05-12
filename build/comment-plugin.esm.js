@@ -211,8 +211,6 @@ function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance");
 }
 
-___$insertStyle(".inline-comment, .frame-comment {\n  color: black;\n  padding: 12px;\n  font-size: 140%;\n  color: white;\n  position: absolute;\n  cursor: move;\n  border-radius: 16px; }\n  .inline-comment:focus, .frame-comment:focus {\n    outline: none;\n    border-color: #ffd92c; }\n\n.inline-comment {\n  z-index: 4;\n  background: #aec4ff;\n  border: 3px solid #aec4ff; }\n\n.frame-comment {\n  z-index: -10;\n  background: rgba(15, 80, 255, 0.2);\n  border: 6px solid transparent; }\n");
-
 var min = function min(arr) {
   return arr.length === 0 ? 0 : Math.min.apply(Math, _toConsumableArray(arr));
 };

@@ -1,4 +1,3 @@
-import './style.sass';
 import CommentManager from './manager';
 import FrameComment from './frame-comment';
 import InlineComment from './inline-comment';
