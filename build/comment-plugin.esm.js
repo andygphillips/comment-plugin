@@ -396,7 +396,7 @@ function () {
   }, {
     key: "onFocus",
     value: function onFocus() {
-      this.scale = Math.max(1, 1 / this.k());
+      //this.scale = Math.max(1, 1 / this.k());
       this.update();
       this.editor.trigger('commentselected', this);
     }
@@ -408,7 +408,7 @@ function () {
   }, {
     key: "onBlur",
     value: function onBlur() {
-      this.scale = 1;
+      //this.scale = 1;
       this.update();
     }
   }, {
