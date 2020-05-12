@@ -737,6 +737,7 @@ function install(editor, _ref) {
   editor.bind('removecomment');
   editor.bind('editcomment');
   editor.bind('commenttranslate');
+  editor.bind('getcomments');
   var manager = new CommentManager(editor);
 
   if (!disableBuiltInEdit) {
@@ -813,6 +814,9 @@ function install(editor, _ref) {
         return manager.deleteComment(c);
       });
     }
+  });
+  editor.on('getcomments', function (data) {
+    data.comments = manager.comments;
   });
   editor.on('syncframes', function () {
     manager.comments.filter(function (comment) {

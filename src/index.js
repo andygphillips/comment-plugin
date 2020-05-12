@@ -13,6 +13,7 @@ function install(editor, { margin = 30, disableBuiltInEdit = false }) {
     editor.bind('removecomment');
     editor.bind('editcomment');
     editor.bind('commenttranslate');
+    editor.bind('getcomments');
 
     const manager = new CommentManager(editor);
 
@@ -63,6 +64,10 @@ function install(editor, { margin = 30, disableBuiltInEdit = false }) {
                 .filter(c => c instanceof FrameComment)
                 .map(c => manager.deleteComment(c))
         }
+    });
+
+    editor.on('getcomments', data => {
+        data.comments = manager.comments;
     });
 
     editor.on('syncframes', () => {
