@@ -13,6 +13,7 @@ function install(editor, { margin = 30, disableBuiltInEdit = false }) {
     editor.bind('addcomment');
     editor.bind('removecomment');
     editor.bind('editcomment');
+    editor.bind('commenttranslate');
 
     const manager = new CommentManager(editor);
 
