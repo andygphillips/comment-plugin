@@ -24,21 +24,6 @@ function install(editor, { margin = 30, disableBuiltInEdit = false }) {
         });
     }
 
-    const destroyKeyListener = listenWindow('keydown', function handleKey(e) {
-        if (e.code === 'KeyF' && e.shiftKey) {
-            const ids = editor.selected.list.map(node => node.id);
-            const nodes = ids.map(id => editor.nodes.find(n => n.id === id));
-    
-            editor.trigger('addcomment', ({ type: 'frame', nodes }))
-        } else if (e.code === 'KeyC' && e.shiftKey) {
-            const position = Object.values(editor.view.area.mouse);
-
-            editor.trigger('addcomment', ({ type: 'inline', position }))
-        } else if (e.code === 'Delete') {
-            manager.deleteFocusedComment();
-        }
-    });
-
     editor.on('addcomment', ({ type, text, nodes, position, data }) => {
         if (type === 'inline') {
             manager.addInlineComment(text, position, null, data);
