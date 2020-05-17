@@ -747,30 +747,6 @@ function install(editor, _ref) {
     });
   }
 
-  var destroyKeyListener = listenWindow('keydown', function handleKey(e) {
-    if (e.code === 'KeyF' && e.shiftKey) {
-      var ids = editor.selected.list.map(function (node) {
-        return node.id;
-      });
-      var nodes = ids.map(function (id) {
-        return editor.nodes.find(function (n) {
-          return n.id === id;
-        });
-      });
-      editor.trigger('addcomment', {
-        type: 'frame',
-        nodes: nodes
-      });
-    } else if (e.code === 'KeyC' && e.shiftKey) {
-      var position = Object.values(editor.view.area.mouse);
-      editor.trigger('addcomment', {
-        type: 'inline',
-        position: position
-      });
-    } else if (e.code === 'Delete') {
-      manager.deleteFocusedComment();
-    }
-  });
   editor.on('addcomment', function (_ref2) {
     var type = _ref2.type,
         text = _ref2.text,
