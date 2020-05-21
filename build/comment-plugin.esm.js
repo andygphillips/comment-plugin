@@ -733,7 +733,7 @@ function install(editor, _ref) {
   editor.bind('removecomment');
   editor.bind('editcomment');
   editor.bind('commenttranslate');
-  editor.bind('getcomments');
+  editor.bind('updatetext');
   var manager = new CommentManager(editor);
 
   if (!disableBuiltInEdit) {
@@ -787,8 +787,11 @@ function install(editor, _ref) {
       });
     }
   });
-  editor.on('getcomments', function (data) {
-    data.comments = manager.comments;
+  editor.on('updatetext', function (_ref4) {
+    var comment = _ref4.comment,
+        text = _ref4.text;
+    comment.text = text;
+    comment.update();
   });
   editor.on('syncframes', function () {
     manager.comments.filter(function (comment) {
@@ -813,9 +816,9 @@ function install(editor, _ref) {
       comment.update();
     });
   });
-  editor.on('nodetranslated', function (_ref4) {
-    var node = _ref4.node,
-        prev = _ref4.prev;
+  editor.on('nodetranslated', function (_ref5) {
+    var node = _ref5.node,
+        prev = _ref5.prev;
     var dx = node.position[0] - prev[0];
     var dy = node.position[1] - prev[1];
     manager.comments.filter(function (comment) {

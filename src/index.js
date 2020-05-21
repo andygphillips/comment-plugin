@@ -13,7 +13,7 @@ function install(editor, { margin = 30, disableBuiltInEdit = false }) {
     editor.bind('removecomment');
     editor.bind('editcomment');
     editor.bind('commenttranslate');
-    editor.bind('getcomments');
+    editor.bind('updatetext');
 
     const manager = new CommentManager(editor);
 
@@ -51,8 +51,9 @@ function install(editor, { margin = 30, disableBuiltInEdit = false }) {
         }
     });
 
-    editor.on('getcomments', data => {
-        data.comments = manager.comments;
+    editor.on('updatetext', ({ comment, text }) => {
+        comment.text = text;
+        comment.update();
     });
 
     editor.on('syncframes', () => {
